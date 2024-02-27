@@ -1,0 +1,29 @@
+.movable-container {
+  position: relative;
+  left: -120rpx;
+  height: 150rpx;
+  width: calc(100% + 120rpx);
+}
+
+.movable-item {
+  position: absolute;
+  left: 120rpx;
+  width: calc(100% - 120rpx);
+  height: inherit;
+  font-size: 30rpx;
+  line-height: 45rpx;
+  color: darkgray;
+  padding: 30rpx;
+  border-top: 1rpx solid rgba(10, 120, 93, 0.1);
+  box-sizing: border-box;
+  background-color: #fff;
+}
+
+.movable-delete {
+  float: right;
+  width: 120rpx;
+  background-color: #f00;
+  text-align: center;
+  line-height: 150rpx;
+  color: #fff;
+}

@@ -1,0 +1,22 @@
+.top {
+  width: 100%;
+  height: 100rpx;
+  line-height: 100rpx;
+  padding: 0 30rpx;
+  color: darkgray;
+  font-size: 30rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.clear .icon-close-bold {
+  margin-right: 10rpx;
+}
+
+.historys {
+  height: 1000rpx;
+}
+
+.historys .dst {
+  color: black;
+}

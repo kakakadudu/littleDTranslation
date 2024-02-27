@@ -1,0 +1,9 @@
+.item {
+  font-size: 30rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  border-top: 1rpx solid rgba(10, 120, 93, 0.1);
+  display: flex;
+  padding: 0 30rpx;
+  justify-content: space-between;
+}

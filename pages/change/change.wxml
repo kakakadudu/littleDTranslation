@@ -1,0 +1,6 @@
+<scroll-view scroll-y style="height: {{height}}px;">
+  <view wx:for="{{langs}}" wx:key="this" class="item" data-index="{{index}}" bind:tap="selectedItemHandle">
+    <text>{{item.text}}</text>
+    <text wx:if="{{item.index === current.index}}" class="iconfont icon-save"></text>
+  </view>
+</scroll-view>

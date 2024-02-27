@@ -1,0 +1,38 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/change/change",
+    "pages/history/history"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "小D翻译",
+    "navigationBarBackgroundColor": "#14785d"
+  },
+  "networkTimeout": {
+    "request": 3000
+  },
+  "tabBar": {
+    "color": "#999",
+    "selectedColor": "#14785d",
+    "backgroundColor": "#f7f7f7",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "翻译",
+        "iconPath": "assets/imgs/translate.png",
+        "selectedIconPath": "assets/imgs/translate_active.png"
+      },
+      {
+        "pagePath": "pages/history/history",
+        "text": "历史",
+        "iconPath": "assets/imgs/history.png",
+        "selectedIconPath": "assets/imgs/history_active.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "componentFramework": "glass-easel",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

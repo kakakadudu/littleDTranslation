@@ -1,0 +1,25 @@
+.container .changeTo {
+  width: 100%;
+  height: 100rpx;
+  line-height: 100rpx;
+  padding: 0 30rpx;
+  color: darkgray;
+  font-size: 30rpx;
+}
+
+.container .content {
+  border-bottom: 1px solid #14785d;
+}
+
+.container textarea {
+  padding: 30rpx;
+  font-size: 40rpx;
+}
+
+.translate .title {
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 30rpx;
+  padding: 0 30rpx;
+  color: darkgray;
+}

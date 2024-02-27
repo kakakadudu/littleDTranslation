@@ -1,0 +1,29 @@
+<view class="top">
+  <text>历史翻译</text>
+  <text class="clear" bind:tap="clearListHandle">
+    <text class="iconfont icon-close-bold">
+    </text>清除记录</text>
+</view>
+<scroll-view scroll-y class="historys" style="height: {{height}}px;">
+  <item 
+    wx:for="{{list}}" 
+    wx:key="this" 
+    item="{{item}}" 
+    index="{{index}}" 
+    list-name="historys" 
+    bind:fresh="freshHandle" 
+    bind:delete="clearItemHandle" 
+    data-index="{{index}}" 
+    custom-class="movable-container"
+  >
+    <view>{{item.src}}</view>
+    <view class="dst">{{item.dst}}</view>
+  </item>
+  <!-- <movable-area class="container" wx:for="{{list}}" wx:key="this">
+    <movable-view direction="horizontal" class="item" bind:touchstart="touchstartHandle" bind:touchend="touchendHandle" inertia x="{{item.x}}" data-index="{{index}}">
+      <view>{{item.src}}</view>
+      <view>{{item.dst}}</view>
+    </movable-view>
+    <view class="delete" data-index="{{index}}" bind:tap="clearItemHandle">删除</view>
+  </movable-area> -->
+</scroll-view>
