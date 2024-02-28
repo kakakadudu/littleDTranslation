@@ -1,7 +1,7 @@
 <view class="container">
   <view class="changeTo" bind:tap="changeToHandle">
-  翻译成{{current.text}}
-  <text class="iconfont icon-down"></text>
+    翻译成 {{current.text}}
+    <text class="iconfont icon-down"></text>
   </view>
   <view class="content">
     <textarea placeholder="请输入文本" bindblur="translateHandle" model:value="{{content}}" bindinput="inputHandle"></textarea>

@@ -1,6 +1,20 @@
 const app = getApp();
 
 Component({
+  relations: {
+    '../leftSliding/leftSliding': {
+      type: 'parent', // 关联的目标节点应为父节点
+      linked: function (target) {
+        // 每次被插入到custom-ul时执行，target是custom-ul节点实例对象，触发在attached生命周期之后
+      },
+      linkChanged: function (target) {
+        // 每次被移动后执行，target是custom-ul节点实例对象，触发在moved生命周期之后
+      },
+      unlinked: function (target) {
+        // 每次被移除时执行，target是custom-ul节点实例对象，触发在detached生命周期之后
+      }
+    }
+  },
   //外部样式类
   externalClasses: ["custom-class"],
   options: {
@@ -16,8 +30,20 @@ Component({
   },
   data: {
     startX: 0, // 每项滑动的起始位
+    deleteClass: "", // 删除时把当前项高度设置为 0
+    offsetY:0, // 删除项目之后的所有节点向上偏移量
   },
   methods: {
+    // 给当前删除项添加类样式，高度设置为 0
+    setDeleteClass() {
+      this.setData({
+        deleteClass: "remove-item"
+      })
+    },
+    // 设置向上偏移量
+    setItemOffsetY(){
+      
+    },
     // 删除当前项
     deleteHandle() {
       // 触发删除事件

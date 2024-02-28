@@ -8,12 +8,20 @@ Page({
   },
   onShow() {
     this.setData({
-      langs: app.globalData.languages
+      langs: app.globalData.languages,
+      current: app.globalData.current
     })
   },
   // 选择目标语言
   selectedItemHandle(e) {
     const index = e.currentTarget.dataset.index;
+    if (index === 0) {
+      wx.showToast({
+        title: '不能选择中文作为译文',
+        icon: "error"
+      })
+      return ;
+    }
     app.globalData.current = app.globalData.languages[index];
     this.setData({
       current: app.globalData.current,

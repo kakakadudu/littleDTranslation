@@ -65,7 +65,7 @@ App({
       text: "英语",
       code: "en",
       index: 3
-    },
+    }, 
     historys: [], // 翻译记录
   }
 })

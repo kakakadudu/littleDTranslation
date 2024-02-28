@@ -27,11 +27,13 @@ Page({
     if (!this.data.list.length) {
       return;
     }
+    const parentEv = this.selectComponent(".parent-event")
     wx.showModal({
       title: '提示',
       content: '您确定要清空所有记录吗？',
       success: (res) => {
         if (res.confirm) {
+          // 清除所有
           if (typeof index === "undefined") {
             this.setData({
               list: []
@@ -39,15 +41,18 @@ Page({
             app.globalData.historys = [];
             wx.removeStorageSync('historys');
           } else {
-            let arr = [...this.data.list];
-            arr.splice(index, 1);
-            // 重新设置所有记录的 x
-            arr = resetGlobalDataFunc(arr, "x", 0);
-            app.globalData.historys = arr;
-            this.setData({
-              list: arr
+            parentEv.deleteChild(index, function () {
+              // 删除一项
+              let arr = [...this.data.list];
+              arr.splice(index, 1);
+              // 重新设置所有记录的 x
+              arr = resetGlobalDataFunc(arr, "x", 0);
+              app.globalData.historys = arr;
+              this.setData({
+                list: arr
+              })
+              wx.setStorageSync('historys', app.globalData.historys);
             })
-            wx.setStorageSync('historys', app.globalData.historys);
           }
         }
       }

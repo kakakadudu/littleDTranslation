@@ -5,20 +5,15 @@
     </text>清除记录</text>
 </view>
 <scroll-view scroll-y class="historys" style="height: {{height}}px;">
-  <item 
-    wx:for="{{list}}" 
-    wx:key="this" 
-    item="{{item}}" 
-    index="{{index}}" 
-    list-name="historys" 
-    bind:fresh="freshHandle" 
-    bind:delete="clearItemHandle" 
+  <left-sliding class="parent-event">
+    <slide-item class="child-event" wx:for="{{list}}" wx:key="this" item="{{item}}" index="{{index}}" list-name="historys" bind:fresh="freshHandle" bind:delete="clearItemHandle" 
     data-index="{{index}}" 
-    custom-class="movable-container"
-  >
-    <view>{{item.src}}</view>
-    <view class="dst">{{item.dst}}</view>
-  </item>
+    data-top="{{index}}"
+    custom-class="movable-container">
+      <view>{{item.src}}</view>
+      <view class="dst">{{item.dst}}</view>
+    </slide-item>
+  </left-sliding>
   <!-- <movable-area class="container" wx:for="{{list}}" wx:key="this">
     <movable-view direction="horizontal" class="item" bind:touchstart="touchstartHandle" bind:touchend="touchendHandle" inertia x="{{item.x}}" data-index="{{index}}">
       <view>{{item.src}}</view>

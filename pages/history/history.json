@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "item": "/components/item/item"
+    "left-sliding": "/components/leftSliding/leftSliding",
+    "slide-item": "/components/slideItem/slideItem"
   }
 }

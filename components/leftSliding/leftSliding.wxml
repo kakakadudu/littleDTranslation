@@ -1,0 +1,3 @@
+<view class="left-sliding">
+  <slot></slot>
+</view>

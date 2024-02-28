@@ -1,4 +1,4 @@
-<movable-area class="movable-container custom-class">
+<movable-area class="movable-container custom-class {{deleteClass}}">
   <movable-view direction="horizontal" class="movable-item" bind:touchstart="touchstartHandle" bind:touchend="touchendHandle" inertia x="{{item.x}}" data-index="{{index}}">
     <slot></slot>
   </movable-view>
