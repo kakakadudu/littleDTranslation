@@ -1,7 +1,8 @@
 // app.js
 App({
   onLaunch() {
-    const list = wx.getStorageSync('historys')
+    // 获取本地储存的历史翻译记录
+    const list = wx.getStorageSync('historys');
     this.globalData.historys = list ? list : [];
     // 获取窗口高度
     this.globalData.height = wx.getSystemInfoSync().windowHeight;

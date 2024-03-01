@@ -6,19 +6,18 @@
 </view>
 <scroll-view scroll-y class="historys" style="height: {{height}}px;">
   <left-sliding class="parent-event">
-    <slide-item class="child-event" wx:for="{{list}}" wx:key="this" item="{{item}}" index="{{index}}" list-name="historys" bind:fresh="freshHandle" bind:delete="clearItemHandle" 
-    data-index="{{index}}" 
-    data-top="{{index}}"
-    custom-class="movable-container">
+    <slide-item 
+      class="child-event" 
+      wx:for="{{list}}" wx:key="this" 
+      item="{{item}}" index="{{index}}" 
+      height="{{75}}" list-name="historys" 
+      bind:delete="clearItemHandle" 
+      bind:fresh="refreshListHandle" 
+      custom-class="movable-container" 
+      data-index="{{index}}" 
+    >
       <view>{{item.src}}</view>
       <view class="dst">{{item.dst}}</view>
     </slide-item>
   </left-sliding>
-  <!-- <movable-area class="container" wx:for="{{list}}" wx:key="this">
-    <movable-view direction="horizontal" class="item" bind:touchstart="touchstartHandle" bind:touchend="touchendHandle" inertia x="{{item.x}}" data-index="{{index}}">
-      <view>{{item.src}}</view>
-      <view>{{item.dst}}</view>
-    </movable-view>
-    <view class="delete" data-index="{{index}}" bind:tap="clearItemHandle">删除</view>
-  </movable-area> -->
 </scroll-view>

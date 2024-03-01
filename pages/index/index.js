@@ -41,6 +41,7 @@ Page({
     if (this.data.lastTime !== null && index === 0) {
       return;
     }
+    // 调用翻译接口
     translateFunc(this.data.content, 'zh', cur.code).then(res => {
       this.setData({
         resultTxt: res.dst,

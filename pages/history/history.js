@@ -10,15 +10,14 @@ Page({
     startX: 0, // 记录每次左滑的起始位 x
   },
   onShow() {
-    this.setData({
-      list: app.globalData.historys
-    })
+    this.refreshListHandle();
   },
   onHide() {
+    // 离开页面
     const data = resetGlobalDataFunc(this.data.list, "x", 0);
     app.globalData.historys = data;
     this.setData({
-      list: data
+      list: data,
     })
     wx.setStorageSync('historys', app.globalData.historys);
   },
@@ -36,20 +35,21 @@ Page({
           // 清除所有
           if (typeof index === "undefined") {
             this.setData({
-              list: []
+              list: [],
             })
             app.globalData.historys = [];
             wx.removeStorageSync('historys');
           } else {
+            // 删除一项
+            const that = this;
+            let arr = [...this.data.list];
+            arr = resetGlobalDataFunc(arr, "x", 0);
+            // 调用父组件的删除子节点方法
             parentEv.deleteChild(index, function () {
-              // 删除一项
-              let arr = [...this.data.list];
               arr.splice(index, 1);
-              // 重新设置所有记录的 x
-              arr = resetGlobalDataFunc(arr, "x", 0);
               app.globalData.historys = arr;
-              this.setData({
-                list: arr
+              that.setData({
+                list: arr,
               })
               wx.setStorageSync('historys', app.globalData.historys);
             })
@@ -63,9 +63,10 @@ Page({
     const index = e.currentTarget.dataset.index;
     this.clearListHandle(null, index);
   },
-  freshHandle() {
+  // 刷新，重新获取全局数据
+  refreshListHandle() {
     this.setData({
-      list: app.globalData.historys
+      list: app.globalData.historys,
     })
   }
 })

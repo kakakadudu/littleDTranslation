@@ -1,6 +1,15 @@
-<movable-area class="movable-container custom-class {{deleteClass}}">
-  <movable-view direction="horizontal" class="movable-item" bind:touchstart="touchstartHandle" bind:touchend="touchendHandle" inertia x="{{item.x}}" data-index="{{index}}">
+<movable-area class="movable-container custom-class" 
+  style="transform: translateY({{offsetY}}px);transition: all {{duration}}ms;"
+>
+  <movable-view 
+    direction="horizontal" class="movable-item" 
+    inertia out-of-bounds friction="150" 
+    bind:touchstart="touchstartHandle" 
+    bind:touchend="touchendHandle" 
+    x="{{item.x}}" 
+    animation="{{isAnimation}}"
+  >
     <slot></slot>
   </movable-view>
-  <view class="movable-delete" data-index="{{index}}" bind:tap="deleteHandle">删除</view>
+  <view class="movable-delete" style="opacity: {{isAnimation ? 1 : 0}};" data-index="{{index}}" bind:tap="deleteHandle">删除</view>
 </movable-area>

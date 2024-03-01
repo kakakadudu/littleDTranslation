@@ -4,15 +4,6 @@ Component({
   relations: {
     '../leftSliding/leftSliding': {
       type: 'parent', // 关联的目标节点应为父节点
-      linked: function (target) {
-        // 每次被插入到custom-ul时执行，target是custom-ul节点实例对象，触发在attached生命周期之后
-      },
-      linkChanged: function (target) {
-        // 每次被移动后执行，target是custom-ul节点实例对象，触发在moved生命周期之后
-      },
-      unlinked: function (target) {
-        // 每次被移除时执行，target是custom-ul节点实例对象，触发在detached生命周期之后
-      }
     }
   },
   //外部样式类
@@ -21,28 +12,40 @@ Component({
     styleIsolation: "apply-shared", // 页面 wxss 样式将影响到自定义组件，但自定义组件 wxss 中指定的样式不会影响页面；
   },
   properties: {
-    listName: {
+    listName: { // 在 globalData 里的属性
       type: String,
-      value: ""
+      value: "",
     }, // 全剧属性值
     index: Number, // 当前项索引
     item: Object, // 当前项
+    height: { // 每个项目的高度
+      type: Number,
+      value: 75,
+    }
   },
   data: {
-    startX: 0, // 每项滑动的起始位
-    deleteClass: "", // 删除时把当前项高度设置为 0
-    offsetY:0, // 删除项目之后的所有节点向上偏移量
+    startX: 0, // 每项滑动的起始位 
+    isAnimation: true,
+    offsetY: 0, // 开始删除前 向下偏移，删除完成恢复偏移量
+    duration: 0, // 动画时间 
   },
   methods: {
-    // 给当前删除项添加类样式，高度设置为 0
-    setDeleteClass() {
+    /**
+     * 设置删除节点后的节点的偏移量
+     * @param {*} y 纵向偏移量
+     * @param {*} duration 延迟时间
+     */
+    setTranslateProps(y, duration) {
       this.setData({
-        deleteClass: "remove-item"
-      })
+        offsetY: y,
+        duration,
+      });
     },
-    // 设置向上偏移量
-    setItemOffsetY(){
-      
+    // 设置左滑显示删除按钮的动画是否显示
+    setAnimationShow(isShow) {
+      this.setData({
+        isAnimation: isShow,
+      })
     },
     // 删除当前项
     deleteHandle() {
@@ -51,7 +54,7 @@ Component({
     },
     touchstartHandle(e) {
       this.setData({
-        startX: e.touches[0].clientX
+        startX: e.touches[0].clientX,
       })
     },
     touchendHandle(e) {
@@ -72,8 +75,8 @@ Component({
           currentItem.x = 0;
         }
       }
-      // 触发刷新事件
-      this.triggerEvent("fresh")
+      // 触发刷新
+      this.triggerEvent("fresh");
     }
   }
 })

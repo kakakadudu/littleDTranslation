@@ -27,7 +27,3 @@
   line-height: 150rpx;
   color: #fff;
 }
-
-.remove-item {
-  height: 0;
-}

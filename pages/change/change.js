@@ -9,7 +9,7 @@ Page({
   onShow() {
     this.setData({
       langs: app.globalData.languages,
-      current: app.globalData.current
+      current: app.globalData.current,
     })
   },
   // 选择目标语言
@@ -17,10 +17,10 @@ Page({
     const index = e.currentTarget.dataset.index;
     if (index === 0) {
       wx.showToast({
-        title: '不能选择中文作为译文',
-        icon: "error"
+        title: '不能选择中文',
+        icon: "error",
       })
-      return ;
+      return;
     }
     app.globalData.current = app.globalData.languages[index];
     this.setData({

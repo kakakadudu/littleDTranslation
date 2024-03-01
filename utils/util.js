@@ -4,9 +4,9 @@ const appid = "20240222001970571";
 const key = "mqnPAP6wjsRVssNOS5Yg";
 /**
  * 翻译
- * @param {*} q 翻译文本
- * @param {*} from 原文语言
- * @param {*} to 译文语言
+ * @param {String} q 翻译文本
+ * @param {String} from 原文语言
+ * @param {String} to 译文语言
  */
 function translateFunc(q, from = "auto", to) {
   wx.showLoading({
@@ -48,10 +48,9 @@ function translateFunc(q, from = "auto", to) {
 }
 
 /**
- * 
  * 重置数据
- * @param {*} data 数据
- * @param {*} key 字段
+ * @param {Array} data 数据
+ * @param {String} key 字段
  * @param {*} val 值
  */
 function resetGlobalDataFunc(data, key, val) {
@@ -62,7 +61,27 @@ function resetGlobalDataFunc(data, key, val) {
   return data;
 }
 
+/**
+ * 函数防抖
+ * @param {Function} func 传入函数
+ * @param {Number} durtaion 延时
+ */
+function debounceFunc(func, duration) {
+  let timer = null;
+  return function () {
+    if (timer) {
+      clearTimeout(timer);
+    }
+    const agrs = [...arguments]
+    timer = setTimeout(() => {
+      func.apply(null, agrs)
+      timer = null;
+    }, duration);
+  }
+}
+
 module.exports = {
   translateFunc,
-  resetGlobalDataFunc
+  resetGlobalDataFunc,
+  debounceFunc
 }
